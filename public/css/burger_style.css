@@ -1,0 +1,50 @@
+.jumbotron {
+    background-image: url("/img/background.jpg");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    margin-top: 10px;
+}
+
+.jumbotron > h1 {
+    font-family: 'Creepster', cursive;
+}
+
+#newburger {
+    border-radius: 5px;
+}
+
+#color-override {
+    color: #fff;
+}
+
+#lefthead {
+    background-color: #5cb85c;
+    color: white;
+    text-align: center;
+    font-size: 1.2em;
+}
+
+#eatbutton, #trashbutton {
+    float: right;
+}
+
+#righthead {
+    background-color: #f0ad4e;
+    color: white;
+    text-align: center;
+    font-size: 1.2em;
+}
+
+.modal-header, .modal-footer {
+    background-color: rgba(173, 103, 10, 0.986);
+    color: #fff;
+}
+
+.modal-header, .modal-body {
+    text-align: center;
+}
+
+.modal-message {
+    float: left;
+}
