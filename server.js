@@ -25,9 +25,21 @@ app.use(bodyParser.json());
 // Static directory
 app.use(express.static("public"));
 
+
+// Set Handlebars.
+var exphbs = require("express-handlebars");
+app.engine("handlebars", exphbs({ defaultLayout: "main" }));
+app.set("view engine", "handlebars");
+
 // Routes
 // =============================================================
-require("./routes/api-routes.js")(app);
+
+// If you choose to use the "routes" folder:
+// require("./routes/api-routes.js")(app);
+
+// If you choose to use the "controllers" folder:
+var router = require("./controllers/burgers_controller.js");
+app.use(router);
 
 // Syncing our sequelize models and then starting our Express app
 // =============================================================

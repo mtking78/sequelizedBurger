@@ -5,9 +5,9 @@ $(function() {
     $(".create-form").on("submit", function(event) {
         event.preventDefault();
 
-        //var isValid = true;
+        // var isValid = true;
         if ($("#newburger").val() === "") {
-            //isValid = false;
+            // isValid = false;
             $("#inputModal").modal("show");
             return;
         }
