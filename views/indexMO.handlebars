@@ -4,15 +4,16 @@
         <h1 id="color-override">Eat the Burger</h1>
         <p id="color-override">Make burgers, eat burgers.</p>
         <div class="row">
-
             <!-- Create Burgers -->
             <div class="col-sm-6">
                 <panel>
                 <h2 id="color-override">Make a Burger</h2>
-                    <form class="create-burger">
+                    <!-- <form class="create-burger"> -->
+                    <form action="/burgers/create" method="post">
                         <div class="form-group">
+                            <!-- <label for="newburger" id="color-override">New Burger:</label> -->
                             <input type="text" id="newburger" name="burger_name" placeholder="Burger Name">
-                            <button type="submit" class="btn btn-success" id="addburger"><span class="fa fa-thumbs-up"></span></button>
+                            <button type="submit" class="btn btn-success" id="addburger" onclick="return validateInput()"><span class="fa fa-thumbs-up"></span></button>
                         </div>
                     </form>
                 </panel>
@@ -24,13 +25,13 @@
                 <h2 id="color-override">Add a Customer</h2>
                     <form class="create-eater">
                         <div class="form-group">
+                            {{!-- <label for="neweater" id="color-override">Add Customer:</label> --}}
                             <input type="text" id="eater-name" name="eater" placeholder="Customer Name">
                             <button type="submit" class="btn btn-success" id="addeater"><span class="fa fa-thumbs-up"></span></button>
                         </div>
                     </form>
                 </panel>
             </div>
-
         </div><!-- /row -->
     </div><!-- /jumbotron -->
 
@@ -44,17 +45,20 @@
                     <ul>
                         {{#each burgers}}
                             {{#unless devoured}}
-                                <span><strong> {{this.id}} - {{this.burger_name}} </strong></span>
-                                <button type="button" class="eatburger btn btn-warning" id ="eatbutton" data-id="{{this.id}}" data-newDevoured="{{devour}}"><span class="fa fa-cutlery"></span></button>
+                                <!-- Method-Override button allows PUT/DELETE requests in HTML without support from a .js file -->
+                                <form action="/burgers/update?_method=PUT" method="POST">
+                                    <span><strong> {{this.id}} - {{this.burger_name}} </strong></span>
+                                    <input type="hidden" name="burger_id" type="text" value={{this.id}}>
+                                    <button type="submit" id="eatbutton" class="eatburger btn btn-warning"><span class="fa fa-cutlery"></span></button>
+                                </form>
                                 <hr>
-
                                 <!-- Testing this section for "eater" join -->
                                 <!--
                                 <select id="burger-eater">
-                                <form action="/api/burgers/{{this.id}}?_method=PUT" method="POST">
-                                    <input type="hidden" name="devoured" value="1">
+                                <form action="/burgers/{{this.id}}?_method=PUT" method="POST">
+                                    <input type="hidden" name="burger_id" value="1">
                                     <input type="text" placeholder="Customer Name" name="burgerEater" id="burger-eater">
-                                    <button type="submit" id="eatbutton" class="eatburger btn btn-warning"><span class="fa fa-cutlery"></span></button>
+                                    <button type="submit" class="btn btn-warning"><span class="fa fa-cutlery"></span></button>
                                 </form>
                                 </select>
                                 -->
@@ -73,8 +77,12 @@
                     <ul>
                         {{#each burgers}}
                             {{#if devoured}}
-                                <span><strong> {{this.id}} - {{this.burger_name}} </strong></span>
-                                <button type="button" class="trashburger btn btn-danger" id ="trashbutton" data-id="{{this.id}}" data-newDevoured="{{devour}}"><span class="fa fa-trash"></span></button>
+                                <!-- Method-Override button allows PUT/DELETE requests in HTML without support from a .js file -->
+                                <form action="/burgers/delete?_method=DELETE" method="POST">
+                                    <span><strong> {{this.id}} - {{this.burger_name}} </strong></span>
+                                    <input type="hidden" name="burger_id" type="text" value={{this.id}}>
+                                    <button type="submit" id="trashbutton" class="btn btn-danger"><span class="fa fa-trash"></span></button>
+                                </form>
                                 <hr>
                             {{/if}}
                         {{/each}}
@@ -108,7 +116,8 @@
     </div><!-- /row -->
 
     <!-- Test div to display "eater" names -->
-    <!-- <div class="row">
+    <!--
+    <div class="row">
         <div class="col-sm-6">
             <div class="panel panel-default">
                 <div class="panel-heading"><strong>Eaters</strong></div>
@@ -123,17 +132,22 @@
                             {{/each}}
                         </select> --}}
                     </ul>
-
-
-                <div class="eater-container">
-                    <tbody>
-
-                    </tbody>
-                </div>
-
                 </div>
             </div>
         </div>
-    </div> -->
+    </div>
+    -->
 
 </div><!-- /container -->
+<script type="text/javascript">
+    function validateInput() {
+        $("#addburger").on("submit", function(event) {
+            event.preventDefault();
+
+            if ($("#newburger").val() === "") {
+                $("#inputModal").modal("show");
+                return false;
+            };
+        });
+    }
+</script>

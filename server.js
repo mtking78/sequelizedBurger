@@ -6,6 +6,7 @@
 // =============================================================
 var express = require("express");
 var bodyParser = require("body-parser");
+var methodOverride = require("method-override");
 
 // Sets up the Express App
 // =============================================================
@@ -21,7 +22,8 @@ var db = require("./models");
 app.use(bodyParser.urlencoded({ extended: true }));
 // parse application/json
 app.use(bodyParser.json());
-
+// Method-Override NPM allows PUT/DELETE requests directly from HTML
+app.use(methodOverride("_method"));
 // Static directory
 app.use(express.static("public"));
 
@@ -38,8 +40,10 @@ app.set("view engine", "handlebars");
 // require("./routes/api-routes.js")(app);
 
 // If you choose to use the "controllers" folder:
-var router = require("./controllers/burgers_controller.js");
-app.use(router);
+var router1 = require("./controllers/burgers_controller.js");
+var router2 = require("./controllers/eaters_controller.js");
+app.use(router1);
+app.use(router2);
 
 // Syncing our sequelize models and then starting our Express app
 // =============================================================
