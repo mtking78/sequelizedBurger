@@ -41,9 +41,9 @@ app.set("view engine", "handlebars");
 
 // If you choose to use the "controllers" folder:
 var router1 = require("./controllers/burgers_controller.js");
-var router2 = require("./controllers/eaters_controller.js");
+// var router2 = require("./controllers/eaters_controller.js");
 app.use(router1);
-app.use(router2);
+// app.use(router2);
 
 // Syncing our sequelize models and then starting our Express app
 // =============================================================

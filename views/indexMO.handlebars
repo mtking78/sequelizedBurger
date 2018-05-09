@@ -8,10 +8,8 @@
             <div class="col-sm-6">
                 <panel>
                 <h2 id="color-override">Make a Burger</h2>
-                    <!-- <form class="create-burger"> -->
                     <form action="/burgers/create" method="post">
                         <div class="form-group">
-                            <!-- <label for="newburger" id="color-override">New Burger:</label> -->
                             <input type="text" id="newburger" name="burger_name" placeholder="Burger Name">
                             <button type="submit" class="btn btn-success" id="addburger" onclick="return validateInput()"><span class="fa fa-thumbs-up"></span></button>
                         </div>
@@ -23,10 +21,9 @@
             <div class="col-sm-6">
                 <panel>
                 <h2 id="color-override">Add a Customer</h2>
-                    <form class="create-eater">
+                    <form action="/eaters/create" method="post">
                         <div class="form-group">
-                            {{!-- <label for="neweater" id="color-override">Add Customer:</label> --}}
-                            <input type="text" id="eater-name" name="eater" placeholder="Customer Name">
+                            <input type="text" id="neweater" name="eater_name" placeholder="Customer Name">
                             <button type="submit" class="btn btn-success" id="addeater"><span class="fa fa-thumbs-up"></span></button>
                         </div>
                     </form>
@@ -46,22 +43,18 @@
                         {{#each burgers}}
                             {{#unless devoured}}
                                 <!-- Method-Override button allows PUT/DELETE requests in HTML without support from a .js file -->
-                                <form action="/burgers/update?_method=PUT" method="POST">
+                                <form action="/burgers/update" method="POST">
                                     <span><strong> {{this.id}} - {{this.burger_name}} </strong></span>
                                     <input type="hidden" name="burger_id" type="text" value={{this.id}}>
+                                    <select name="eaterID">
+                                        <option>Choose a Customer</option>
+                                        {{#each ../eaters}}
+                                            <option value={{this.id}}>{{this.eater_name}}</option>
+                                        {{/each}}
+                                    </select>
                                     <button type="submit" id="eatbutton" class="eatburger btn btn-warning"><span class="fa fa-cutlery"></span></button>
                                 </form>
                                 <hr>
-                                <!-- Testing this section for "eater" join -->
-                                <!--
-                                <select id="burger-eater">
-                                <form action="/burgers/{{this.id}}?_method=PUT" method="POST">
-                                    <input type="hidden" name="burger_id" value="1">
-                                    <input type="text" placeholder="Customer Name" name="burgerEater" id="burger-eater">
-                                    <button type="submit" class="btn btn-warning"><span class="fa fa-cutlery"></span></button>
-                                </form>
-                                </select>
-                                -->
                             {{/unless}}
                         {{/each}}
                     </ul>
@@ -79,7 +72,10 @@
                             {{#if devoured}}
                                 <!-- Method-Override button allows PUT/DELETE requests in HTML without support from a .js file -->
                                 <form action="/burgers/delete?_method=DELETE" method="POST">
-                                    <span><strong> {{this.id}} - {{this.burger_name}} </strong></span>
+                                    <span><strong> 
+                                        {{this.id}} - {{this.burger_name}} </strong>eaten by 
+                                            <strong>{{this.Eater.eater_name}}
+                                    </strong></span>
                                     <input type="hidden" name="burger_id" type="text" value={{this.id}}>
                                     <button type="submit" id="trashbutton" class="btn btn-danger"><span class="fa fa-trash"></span></button>
                                 </form>
@@ -114,29 +110,6 @@
         </div> <!-- End of Modal -->
 
     </div><!-- /row -->
-
-    <!-- Test div to display "eater" names -->
-    <!--
-    <div class="row">
-        <div class="col-sm-6">
-            <div class="panel panel-default">
-                <div class="panel-heading"><strong>Eaters</strong></div>
-                <div class="panel-body">
-                    <ul>
-                        {{#each eaters}}
-                            <span> {{this.eater_name}} </span>
-                        {{/each}}
-                        {{!-- <select id="burger-eater">
-                            {{#each eaters}}
-                                <option value="{{this.id}}"><span>{{this.eater_name}}</span></option>
-                            {{/each}}
-                        </select> --}}
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </div>
-    -->
 
 </div><!-- /container -->
 <script type="text/javascript">
