@@ -6,7 +6,7 @@
 ------------------------------------------------------------------------------------------
 <details>
 <summary>
-### What is Sequelize Burgers?
+What is Sequelize Burgers?
 </summary>
 This is an app that lets users input the names of burgers they'd like to eat. Whenever a user submits a burger's name, the app will display the burger in `New Burgers`, the left side of the page. The user can additionally create customer names.
 Each burger in the waiting area has a drop-down list of customers, that when chosen, will move the burger to `Devoured`, and display it with the customer who ate it on the right side of the page.
