@@ -4,8 +4,6 @@
 ### A simple CRUD app that uses handlebars, Express, MySQL, and Sequelize to manipulate a "burger and eater" database.
 ## [Link to Live Heroku Page](https://boiling-garden-47959.herokuapp.com/)
 
----
-
 <details>
 <summary>What is Sequelize Burgers?</summary>
 ```
@@ -14,8 +12,6 @@ Each burger in the waiting area has a drop-down list of customers, that when cho
 The app is performing CRUD functions from 2 tables, `burgers` and `eaters`.  The burger model is associated with the eater model by a foreign key - a burger can belong to a single eater, and an eater has many burgers.
 ```
 </details>
-
----
 
 ## To Install
 * Git Clone the repository
