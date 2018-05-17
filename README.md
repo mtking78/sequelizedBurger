@@ -12,7 +12,6 @@ This is an app that lets users input the names of burgers they'd like to eat. Wh
 Each burger in the waiting area has a drop-down list of customers, that when chosen, will move the burger to `Devoured`, and display it with the customer who ate it on the right side of the page.
 
 The app is performing CRUD functions from 2 tables, `burgers` and `eaters`.  The burger model is associated with the eater model by a foreign key - a burger can belong to a single eater, and an eater has many burgers.
-<details>
 ------------------------------------------------------------------------------------------
 ## To Install
 * Git Clone the repository
