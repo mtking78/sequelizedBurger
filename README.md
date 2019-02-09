@@ -2,7 +2,7 @@
 ![](public/img/screenshot.jpg)
 
 ### A simple CRUD app that uses handlebars, Express, MySQL, and Sequelize to manipulate a "burger and eater" database.
-## [Link to Live Heroku Page](https://boiling-garden-47959.herokuapp.com/)
+## [Link to Live Heroku Page](https://mk-sequelize-burger.herokuapp.com/)
 
 <details>
 <summary>What is Sequelize Burgers?</summary>
